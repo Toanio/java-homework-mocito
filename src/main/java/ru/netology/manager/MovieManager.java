@@ -6,7 +6,20 @@ import java.lang.module.FindException;
 
 public class MovieManager {
     private Movie[] movies = new Movie[0];
+    private int amountFilms=10;
 
+    public MovieManager(int amountFilms) {
+        this.amountFilms = amountFilms;
+    }
+
+    public Movie[] getTenFilms(int amountFilms){ // метод в котором можно задать количество выдаваемых афиш
+        Movie[] result = new Movie[amountFilms];
+        for (int i = 0; i < result.length; i++) {
+            int index = movies.length - i - 1;
+            result[i] = movies[index];
+        }
+        return result;
+    }
 
     public void add(Movie movie) {
         int length = movies.length + 1;
@@ -40,14 +53,7 @@ public class MovieManager {
         }
         movies = tmp;
     }
-    public Movie[] getTenFilms(int amountFilms){ // метод в котором можно задать количество выдаваемых афиш
-        Movie[] result = new Movie[amountFilms];
-        for (int i = 0; i < result.length; i++) {
-            int index = movies.length - i - 1;
-            result[i] = movies[index];
-        }
-        return result;
-    }
+
     public Movie[] getTenFilms(){ // метод по умолчанию выдает 10 афиш
         Movie[] result = new Movie[10];
         for (int i = 0; i < result.length; i++) {

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MovieManagerTest {
 
-    private MovieManager manager=new MovieManager();
+    private MovieManager manager=new MovieManager(10);
     Movie first = new Movie(1, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie second = new Movie(2, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie third = new Movie(3, "imageHostel", "Hostel Belgrad", "Genre1");
@@ -56,8 +56,7 @@ class MovieManagerTest {
     }
     @Test
     void getTenFilms(){
-        System.out.println(Arrays.toString(manager.getTenFilms(5)));
-        System.out.println(Arrays.toString(manager.getTenFilms()));
+
     }
 
 }
