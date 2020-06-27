@@ -24,6 +24,9 @@ public class AfishaManager {
         }
         return result;
     }
-
+    public Movie[] getMoviesForFeed() {
+        // TODO: add logic
+        return null;
+    }
 }
 
