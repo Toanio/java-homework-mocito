@@ -54,9 +54,5 @@ class MovieManagerTest {
 
 
     }
-    @Test
-    void getTenFilms(){
-
-    }
 
 }
