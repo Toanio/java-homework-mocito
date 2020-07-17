@@ -7,18 +7,24 @@ import java.lang.module.FindException;
 public class MovieManager {
     private Movie[] movies = new Movie[0];
     private int amountFilms = 10;
+    private int defaultFilmCount=10;
+
 
     public MovieManager() {
-        amountFilms = 10;
+
     }
 
     public MovieManager(int amountFilms) {
-        this.amountFilms = amountFilms;
+        if (amountFilms >= 0) {
+            this.amountFilms = amountFilms;
+        }
     }
 
     public Movie[] getTenFilms() { // метод в котором можно задать количество выдаваемых афиш
-        if (!(movies.length >= amountFilms)) {
-            return null;
+        if (amountFilms <= movies.length) {
+            if (amountFilms < 0) {
+                amountFilms = defaultFilmCount;
+            }
         }
         Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
@@ -39,31 +45,6 @@ public class MovieManager {
         movies = tmp;
     }
 
-    public Movie[] getAll() {
-        Movie[] result = new Movie[movies.length];
-        for (int i = 0; i < result.length; i++) {
-            int index = movies.length - i - 1;
-            result[i] = movies[index];
-        }
-        return result;
-    }
 
-    public void removeById(int id) {
-        int length = movies.length - 1;
-        Movie[] tmp = new Movie[length];
-        int index = 0;
-        for (Movie movie : movies) {
-            if (movie.getId() != id) {
-                tmp[index] = movie;
-                index++;
-            }
-        }
-        movies = tmp;
-    }
-
-    public Movie[] getMoviesForFeed() {
-        // TODO: add logic
-        return null;
-    }
 }
 
