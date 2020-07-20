@@ -1,18 +1,15 @@
 package ru.netology.manager;
 
-import org.junit.jupiter.api.BeforeAll;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movie;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class MovieManagerTest {
-
-    private MovieManager manager=new MovieManager(10);
     Movie first = new Movie(1, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie second = new Movie(2, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie third = new Movie(3, "imageHostel", "Hostel Belgrad", "Genre1");
@@ -26,8 +23,10 @@ class MovieManagerTest {
     Movie eleven = new Movie(11, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie twelve= new Movie(12, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie xix= new Movie(13, "imageHostel", "Hostel Belgrad", "Genre1");
-    @BeforeEach
-    public void setUp() {
+
+    @Test
+    void shouldManagerShowDefaultFilm() {
+        MovieManager manager=new MovieManager();
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -35,26 +34,55 @@ class MovieManagerTest {
         manager.add(five);
         manager.add(six);
         manager.add(seven);
+        manager.add(eight);
+        manager.add(nine);
+        manager.add(ten);
+
+        Movie[] actual=manager.getFilms();
+        Movie[] expected={ten,nine,eight,seven,six,five,four,third,second,first};
+        assertArrayEquals(expected,actual);
+    }
+    @Test
+    void shouldManagerShowFiveFilms(){
+        MovieManager manager=new MovieManager(5);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(four);
+        manager.add(five);
+        manager.add(six);
+        manager.add(seven);
+        manager.add(eight);
+        manager.add(nine);
+        manager.add(ten);
+
+        Movie[] actual=manager.getFilms();
+        Movie[] expected={ten,nine,eight,seven,six};
+        assertArrayEquals(expected,actual);
+    }
+    @Test
+    void shouldManagerShowMinFilms(){
+        MovieManager manager=new MovieManager(14);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(four);
+        manager.add(five);
+        manager.add(six);
+        manager.add(seven);
+        manager.add(eight);
         manager.add(nine);
         manager.add(ten);
         manager.add(eleven);
+        manager.add(nine);
         manager.add(twelve);
         manager.add(xix);
+
+
+        Movie[] actual=manager.getFilms();
+        Movie[] expected={xix,twelve,nine,eleven,ten,nine,eight,seven,six,five,four,third,second,first};
+        assertArrayEquals(expected,actual);
     }
 
-    
-    @Test
-    void shouldTestIt() {
-        int idToRemove = 5;
-
-        //manager.removeById(idToRemove);
-
-        //Movie[] actual = manager.getAll();
-        Movie[] expected = new Movie[]{eight, seven, six, four, third, second, first};
-
-        //ssertArrayEquals(expected, actual);
-
-
-    }
 
 }
