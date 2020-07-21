@@ -2,8 +2,6 @@ package ru.netology.manager;
 
 import ru.netology.domain.Movie;
 
-import java.lang.module.FindException;
-
 public class MovieManager {
     private Movie[] movies = new Movie[0];
     private int amountFilms;
@@ -44,14 +42,14 @@ public class MovieManager {
         tmp[lastIndex] = movie;
         movies = tmp;
     }
-    public Movie[] showAll(){
-        Movie[] result = new Movie[movies.length];
-        for (int i = 0; i < result.length; i++) {
-            int index = movies.length - i - 1;
-            result[i] = movies[index];
-        }
-        return result;
-    }
+//    public Movie[] showAll(){
+//        Movie[] result = new Movie[movies.length];
+//        for (int i = 0; i < result.length; i++) {
+//            int index = movies.length - i - 1;
+//            result[i] = movies[index];
+//        }
+//        return result;
+//    }
 
 
 }
