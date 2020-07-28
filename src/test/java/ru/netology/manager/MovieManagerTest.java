@@ -3,73 +3,84 @@ package ru.netology.manager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movie;
 import ru.netology.repository.AfishaRepository;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class MovieManagerTest {
-    AfishaManager manager=new AfishaManager(new AfishaRepository());
+    @Mock
+    AfishaRepository repository;
+
+
+    @InjectMocks
+    AfishaManager manager;
     Movie first = new Movie(1, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie second = new Movie(2, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie third = new Movie(3, "imageHostel", "Hostel Belgrad", "Genre1");
     Movie four = new Movie(4, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie five = new Movie(5, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie six = new Movie(6, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie seven = new Movie(7, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie eight = new Movie(8, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie nine = new Movie(9, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie ten = new Movie(10, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie eleven = new Movie(11, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie twelve= new Movie(12, "imageHostel", "Hostel Belgrad", "Genre1");
-//    Movie xix= new Movie(13, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie fifth = new Movie(5, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie sixth = new Movie(6, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie seventh = new Movie(7, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie eighth = new Movie(8, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie ninth = new Movie(9, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie tenth = new Movie(10, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie eleventh = new Movie(11, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie twelfth = new Movie(12, "imageHostel", "Hostel Belgrad", "Genre1");
+    Movie thirteenth = new Movie(13, "imageHostel", "Hostel Belgrad", "Genre1");
 
-    @Mock
-    AfishaRepository repository;
 
-    @InjectMocks
-    AfishaManager manager;
+    @BeforeEach
+    public void setUp() {
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+    }
 
     @Test
     void shouldRemoveIt() {
-        int idToRemove = 3;
+        int idToRemove = 1;
 
-        Movie[] returned = new Movie[]{first, second, four};
+        Movie[] returned = new Movie[]{second, third};
         doReturn(returned).when(repository).findAll();
         doNothing().when(repository).removeById(idToRemove);
 
-
-        Movie[] actual=manager.getAll();
-        Movie[] expected= new Movie[]{first, second, four};
+        manager.removeById(idToRemove);
 
 
-        assertArrayEquals(expected,actual);
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{third, second};
+
+
+        assertArrayEquals(expected, actual);
+        verify(repository).removeById(idToRemove);
     }
 
+    @Test
+    void shouldFindById(){
+        int idToFind=2;
 
-//    @Test
-//    void shouldTestIt() {
-//        int idToRemove = 5;
-//
-//        //manager.removeById(idToRemove);
-//
-//       // Movie[] actual = manager.getAll();
-//        Movie[] expected = new Movie[]{eight, seven, six, four, third, second, first};
-//
-//        //assertArrayEquals(expected, actual);
-//
-//
-//    }
-//    @Test
-//    void getTenFilms(){
-////        System.out.println(Arrays.toString(manager.getTenFilms(5)));
-////        System.out.println(Arrays.toString(manager.getTenFilms()));
-//    }
+        Movie[] returned = new Movie[]{second};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).findById(idToFind);
+
+        manager.findById(idToFind);
+
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{second};
+
+        assertArrayEquals(expected, actual);
+        verify(repository).findById(idToFind);
+
+    }
+
 
 }

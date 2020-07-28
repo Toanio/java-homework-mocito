@@ -21,7 +21,6 @@ public class AfishaRepository {
     }
 
     public Movie findById(int id) {
-        int index = 0;
         for (Movie movie : movies) {
             if (movie.getId() == id) {
                 return movie;
@@ -43,8 +42,9 @@ public class AfishaRepository {
         movies = tmp;
     }
 
-    public void removeAll() {
+    public Movie[] removeAll() {
         movies = null;
+        return new Movie[0];
     }
 
 

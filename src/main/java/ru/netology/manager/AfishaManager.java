@@ -24,9 +24,12 @@ public class AfishaManager {
         }
         return result;
     }
-    public Movie[] getMoviesForFeed() {
-        // TODO: add logic
-        return null;
+    public void removeById(int id){
+        repository.removeById(id);
     }
+    public void findById(int id){
+        repository.findById(id);
+    }
+
 }
 
