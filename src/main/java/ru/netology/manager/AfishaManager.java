@@ -10,7 +10,7 @@ public class AfishaManager {
         this.repository = repository;
     }
 
-    public void add(Movie movie){
+    public void add(Movie movie) {
         repository.save(movie);
     }
 
@@ -24,13 +24,16 @@ public class AfishaManager {
         }
         return result;
     }
-    public void removeById(int id){
+
+    public void removeById(int id) {
         repository.removeById(id);
     }
-    public Movie findById(int id){
+
+    public Movie findById(int id) {
         return repository.findById(id);
     }
-    public Movie[] removeAll(){
+
+    public Movie[] removeAll() {
         repository.removeAll();
         return new Movie[0];
     }

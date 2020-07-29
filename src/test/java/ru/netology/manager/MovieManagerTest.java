@@ -65,32 +65,32 @@ class MovieManagerTest {
     }
 
     @Test
-    void shouldFindById(){
-        int idToFind=2;
+    void shouldFindById() {
+        int idToFind = 2;
 
-        Movie back=second;
+        Movie back = second;
         doReturn(back).when(repository).findById(idToFind);
 
         Movie actual = manager.findById(idToFind);
-        Movie expected =second;
+        Movie expected = second;
 
         assertEquals(expected, actual);
         verify(repository).findById(idToFind);
 
     }
 
-   @Test
-    void shouldRemoveAll(){
+    @Test
+    void shouldRemoveAll() {
         Movie[] returned = new Movie[]{};
         doReturn(returned).when(repository).removeAll();
 
-        Movie[] actual=manager.removeAll();
-        Movie[] expected=new Movie[]{};
+        Movie[] actual = manager.removeAll();
+        Movie[] expected = new Movie[]{};
 
-       assertArrayEquals(expected, actual);
-       verify(repository).removeAll();
+        assertArrayEquals(expected, actual);
+        verify(repository).removeAll();
 
-   }
+    }
 
 
 }

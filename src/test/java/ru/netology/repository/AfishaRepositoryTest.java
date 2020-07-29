@@ -41,9 +41,10 @@ class AfishaRepositoryTest {
         assertEquals(expected, actual);
 
     }
+
     @Test
-    void shouldFindByIdIfFoundNull(){
-        int idToFind=10;
+    void shouldFindByIdIfFoundNull() {
+        int idToFind = 10;
         Movie actual = repository.findById(idToFind);
         Movie expected = null;
 
