@@ -43,7 +43,6 @@ public class AfishaRepository {
     }
 
     public Movie[] removeAll() {
-        movies = null;
         return new Movie[0];
     }
 

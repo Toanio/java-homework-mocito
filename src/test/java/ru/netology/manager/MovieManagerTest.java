@@ -91,6 +91,11 @@ class MovieManagerTest {
         verify(repository).removeAll();
 
     }
+    @Test
+    public void setEnviroment(){
+        String test = System.getenv("USERDOMAIN");
+        System.out.println(test);
 
+    }
 
 }
