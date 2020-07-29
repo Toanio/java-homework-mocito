@@ -41,6 +41,14 @@ class AfishaRepositoryTest {
         assertEquals(expected, actual);
 
     }
+    @Test
+    void shouldFindByIdIfFoundNull(){
+        int idToFind=10;
+        Movie actual = repository.findById(idToFind);
+        Movie expected = null;
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     void shouldRemoveById() {
@@ -62,6 +70,5 @@ class AfishaRepositoryTest {
         Movie[] expected = new Movie[]{};
         assertArrayEquals(expected, actual);
     }
-
 
 }
