@@ -34,9 +34,11 @@ public class AfishaManager {
     }
 
     public Movie[] removeAll() {
-        repository.removeAll();
-        return new Movie[0];
+        return repository.removeAll();
     }
 
+    public Movie[] getFilms() { // метод в котором можно задать количество выдаваемых афиш
+        return repository.getFilms();
+    }
 }
 

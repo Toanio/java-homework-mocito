@@ -43,6 +43,17 @@ class MovieManagerTest {
         manager.add(first);
         manager.add(second);
         manager.add(third);
+        manager.add(four);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        manager.add(ninth);
+        manager.add(twelfth);
+        manager.add(thirteenth);
     }
 
     @Test
@@ -92,9 +103,16 @@ class MovieManagerTest {
 
     }
     @Test
-    public void setEnviroment(){
-        String test = System.getenv("USERDOMAIN");
-        System.out.println(test);
+    void shouldManagerHaveAmountFilmsLessThenZero(){
+
+        Movie[] returned = new Movie[]{thirteenth, twelfth, ninth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth};
+        doReturn(returned).when(repository).getFilms();
+
+        Movie[] actual=manager.getFilms();
+        Movie[] expected={thirteenth, twelfth, ninth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth};
+
+        assertArrayEquals(expected,actual);
+        verify(repository).getFilms();
 
     }
 
